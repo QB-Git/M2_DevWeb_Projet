@@ -96,14 +96,12 @@ export class ListeComponent implements OnInit {
       }
       else {
         // CREATE
-        this.restApi.createGame(this.game).subscribe(
-          (res) => console.log(res),
-          (err) => console.log(err)
-        );
-        // this.restApi.createGame(this.game).subscribe((data: {}) => {
-        //   this.games.push(data);
-        //   this.messageService.add({ severity: 'success', summary: 'Opération réussie', detail: 'Jeu ajouté', life: 3000 });
-        // });
+        this.restApi.createGame(this.game).subscribe((data: {}) => {
+          this.games.push(data);
+          this.gameDialog = false;
+          this.game = {};
+          this.messageService.add({ severity: 'success', summary: 'Opération réussie', detail: 'Jeu ajouté', life: 3000 });
+        });
       }
     }
   }
@@ -140,6 +138,7 @@ export class ListeComponent implements OnInit {
       return 'http://localhost:3000' + game.miniature;
     return 'assets/nopicture.png';
   }
+
 
 }
 

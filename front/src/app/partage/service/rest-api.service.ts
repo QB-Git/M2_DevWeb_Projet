@@ -28,6 +28,7 @@ export class RestApiService {
     if(game.plateforme) game.plateforme.forEach(p => formData.append('plateforme', p));
     if(game.support) game.support.forEach(p => formData.append('support', p));
     if(game.commentaire) formData.append('commentaire', game.commentaire);
+    if(game.favoris) formData.append('favoris', ''+game.favoris);
     if(game.miniature) formData.append('miniature', game.miniature)
     return formData;
   }
@@ -85,6 +86,10 @@ export class RestApiService {
 
   // HttpClient API put() method => Update game
   updateGame(id: any, game: any): Observable<Game> {
+    console.log(game);
+    for (var pair of this.jsonToFormData(game).entries()) {
+      console.log(pair[0] + ', ' + pair[1]);
+    }
     return this.http
       .patch<Game>(
         this.api.updateGame.replace(':id', id),

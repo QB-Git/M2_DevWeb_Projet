@@ -74,10 +74,13 @@
 
 <p-dialog [(visible)]="gameDialog" [style]="{width: '75%'}" header="Ajout d'un jeu" [modal]="true" styleClass="p-fluid">
   <ng-template pTemplate="content">
+    <ng-template [ngIf]="true">
+      <p-image [src]="getMiniature(game)" alt="miniature" width="250" [preview]="true"></p-image>
+    </ng-template>
     <p-fileUpload mode="basic" accept="image/*" [maxFileSize]="2000000" (onSelect)="onBasicUpload($event)"
-      [customUpload]="true"></p-fileUpload>
+      [customUpload]="true" chooseLabel="Choisir une miniature"></p-fileUpload>
     <div class="p-field">
-      <label for="name">Name</label>
+      <label for="name"><b>* </b>Nom</label>
       <input type="text" pInputText id="name" [(ngModel)]="game.nom" required autofocus placeholder="Choisir un nom" />
       <small class="p-error block" *ngIf="!game!.nom">Le nom est obligatoire</small>
     </div>
@@ -94,24 +97,27 @@
         </p-inputNumber>
       </div>
       <div class="col-12 md:col-4">
-        <label>Status</label>
+        <label><b>* </b>Status</label>
         <p-dropdown [options]="listStatus" [(ngModel)]="game.status" placeholder="Choisir un status" [showClear]="true"
           [style]="{width: 'auto'}">
         </p-dropdown>
+        <small class="p-error block" *ngIf="!game!.status">Le status est obligatoire</small>
       </div>
     </div>
     <div class="p-field">
-      <label>Plateforme(s)</label>
+      <label><b>* </b>Plateforme(s)</label>
       <p-multiSelect [options]="listPlateformes" [(ngModel)]="game.plateforme"
         defaultLabel="Choisir une(des) plateforme(s)" display="chip"></p-multiSelect>
+      <small class="p-error block" *ngIf="!game!.plateforme">Saisir au moins une plateforme</small>
     </div>
     <div class="p-field">
-      <label>Support(s)</label>
+      <label><b>* </b>Support(s)</label>
       <p-multiSelect [options]="listSupports" [(ngModel)]="game.support" defaultLabel="Choisir un(des) support(s)"
         display="chip"></p-multiSelect>
+      <small class="p-error block" *ngIf="!game!.support">Saisir au moins un support</small>
     </div>
     <div class="p-field">
-      <label for="description">Description</label>
+      <label for="description">Commentaire</label>
       <textarea id="description" pInputTextarea [(ngModel)]="game!.commentaire" required rows="6" cols="20"></textarea>
     </div>
   </ng-template>
