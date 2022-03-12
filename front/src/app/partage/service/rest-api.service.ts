@@ -77,24 +77,17 @@ export class RestApiService {
     return this.http
       .put<Game>(
         this.api.addGame,
-        this.jsonToFormData(game),
-        // JSON.stringify(game),
-        // this.httpOptions
+        this.jsonToFormData(game)
       )
       .pipe(retry(1), catchError(this.handleError));
   }
 
   // HttpClient API put() method => Update game
   updateGame(id: any, game: any): Observable<Game> {
-    console.log(game);
-    for (var pair of this.jsonToFormData(game).entries()) {
-      console.log(pair[0] + ', ' + pair[1]);
-    }
     return this.http
       .patch<Game>(
         this.api.updateGame.replace(':id', id),
-        this.jsonToFormData(game),
-        this.httpOptions
+        this.jsonToFormData(game)
       )
       .pipe(retry(1), catchError(this.handleError));
   }
