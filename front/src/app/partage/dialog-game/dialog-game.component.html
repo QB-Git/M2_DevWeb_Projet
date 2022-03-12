@@ -1,0 +1,55 @@
+<p-dialog [(visible)]="open" [style]="{width: '75%'}" header="Ajout d'un jeu" [modal]="true" styleClass="p-fluid">
+  <ng-template pTemplate="content">
+    <ng-template [ngIf]="true">
+      <p-image [src]="formatGame.getMiniature(game)" alt="miniature" width="250" [preview]="true"></p-image>
+    </ng-template>
+    <p-fileUpload mode="basic" accept="image/*" [maxFileSize]="2000000" (onSelect)="onBasicUpload($event)"
+      [customUpload]="true" chooseLabel="Choisir une miniature"></p-fileUpload>
+    <div class="p-field">
+      <label for="name"><b>* </b>Nom</label>
+      <input type="text" pInputText id="name" [(ngModel)]="game.nom" required autofocus placeholder="Choisir un nom" />
+      <small class="p-error block" *ngIf="!game!.nom">Le nom est obligatoire</small>
+    </div>
+    <div class="grid p-fluid">
+      <div class="col-12 md:col-4">
+        <label>Favoris</label><br>
+        <p-toggleButton [(ngModel)]="game.favoris" onLabel="Favoris" offLabel="Non favoris" [onIcon]="'pi pi-star-fill'"
+          offIcon="pi pi-star"></p-toggleButton>
+      </div>
+      <div class="col-12 md:col-4">
+        <label>Note</label>
+        <p-inputNumber [(ngModel)]="game.note" mode="decimal" [showButtons]="true" inputId="minmax-buttons" [min]="0"
+          [max]="10" [step]="0.5" suffix=" / 10" placeholder="Choisir une note">
+        </p-inputNumber>
+      </div>
+      <div class="col-12 md:col-4">
+        <label><b>* </b>Status</label>
+        <p-dropdown [options]="listStatus" [(ngModel)]="game.status" placeholder="Choisir un status" [showClear]="true"
+          [style]="{width: 'auto'}">
+        </p-dropdown>
+        <small class="p-error block" *ngIf="!game!.status">Le status est obligatoire</small>
+      </div>
+    </div>
+    <div class="p-field">
+      <label><b>* </b>Plateforme(s)</label>
+      <p-multiSelect [options]="listPlateformes" [(ngModel)]="game.plateforme"
+        defaultLabel="Choisir une(des) plateforme(s)" display="chip"></p-multiSelect>
+      <small class="p-error block" *ngIf="!game!.plateforme">Saisir au moins une plateforme</small>
+    </div>
+    <div class="p-field">
+      <label><b>* </b>Support(s)</label>
+      <p-multiSelect [options]="listSupports" [(ngModel)]="game.support" defaultLabel="Choisir un(des) support(s)"
+        display="chip"></p-multiSelect>
+      <small class="p-error block" *ngIf="!game!.support">Saisir au moins un support</small>
+    </div>
+    <div class="p-field">
+      <label for="description">Commentaire</label>
+      <textarea id="description" pInputTextarea [(ngModel)]="game!.commentaire" required rows="6" cols="20"></textarea>
+    </div>
+  </ng-template>
+
+  <ng-template pTemplate="footer">
+    <button pButton pRipple label="Annuler" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
+    <button pButton pRipple label="Enregistrer" icon="pi pi-check" class="p-button-text" (click)="saveGame()"></button>
+  </ng-template>
+</p-dialog>

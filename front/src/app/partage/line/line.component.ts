@@ -3,11 +3,12 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormatGameService } from '../service/format-game.service';
 
 @Component({
-  selector: 'app-carte',
-  templateUrl: './carte.component.html',
-  styleUrls: ['./carte.component.scss']
+  selector: 'app-line',
+  templateUrl: './line.component.html',
+  styleUrls: ['./line.component.scss']
 })
-export class CarteComponent implements OnInit {
+export class LineComponent implements OnInit {
+
   @Input() game: Game;
 
   @Output('gameDelete') delete$: EventEmitter<any> = new EventEmitter();

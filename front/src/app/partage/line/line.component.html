@@ -1,18 +1,21 @@
 <div class="container">
-  <div class="game-grid-item-top">
-    <span class="game-score">{{game.note ? game.note+" / 10" : "Non noté"}}</span>
-    <i [class]="(game.favoris ? 'pi pi-star-fill' : '')+' iconFavoris'"></i>
-    <p-badge class="game-name-badge" [value]="game.status || 'Pas de status'"></p-badge>
-  </div>
-  <div class="game-grid-item-content">
+  <span class="game-favoris">
     <img [src]="formatGame.getMiniature(game)" [alt]="game.miniature" />
-    <div class="game-name">{{game.nom}}</div>
+    <i [class]="game.favoris ? 'pi pi-star-fill' : ''"></i>
+  </span>
+  <div class="game-list-detail">
+    <div class="game-name">
+      <p-badge class="game-name-badge" [value]="game.status || 'Pas de status'"></p-badge>
+      {{game.nom}}
+      <!-- <span [class]="'game-badge status-' + game.status.toLowerCase()">{{game.status}}</span> -->
+    </div>
     <div class="game-plateforme">
       <p-chip *ngFor="let plateforme of game.plateforme" [label]="plateforme" icon="pi pi-desktop"></p-chip>
       <p-chip *ngFor="let support of game.support" [label]="support" icon="fa fa-compact-disc"></p-chip>
     </div>
+    <span class="game-score">{{game.note ? game.note+" / 10" : "Non noté"}}</span>
   </div>
-  <div class="game-grid-item-bottom">
+  <div class="game-list-action">
     <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded" label="Modifier"
       (click)="btnUpdateGame()"></button>
     <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger" label="Supprimer"

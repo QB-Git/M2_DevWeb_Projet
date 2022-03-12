@@ -35,6 +35,8 @@ import { ToggleButtonModule } from 'primeng/togglebutton';
 import { MultiSelectModule } from 'primeng/multiselect';
 import { ReactiveFormsModule } from '@angular/forms';
 import {ImageModule} from 'primeng/image';
+import { LineComponent } from './partage/line/line.component';
+import { DialogGameComponent } from './partage/dialog-game/dialog-game.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +45,9 @@ import {ImageModule} from 'primeng/image';
     ListeComponent,
     StatsComponent,
     AccueilComponent,
-    CarteComponent
+    CarteComponent,
+    LineComponent,
+    DialogGameComponent
   ],
   imports: [
     BrowserModule,

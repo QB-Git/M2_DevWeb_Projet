@@ -1,19 +1,11 @@
 import { RestApiService } from './../partage/service/rest-api.service';
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Game } from '../partage/Game';
 import { SelectItem, ConfirmationService, MessageService } from 'primeng/api';
-import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-liste',
   templateUrl: './liste.component.html',
-  styles: [`
-      :host ::ng-deep .p-dialog .product-image {
-          width: 150px;
-          margin: 0 auto 2rem auto;
-          display: block;
-      }
-  `],
   styleUrls: ['./liste.component.scss']
 })
 export class ListeComponent implements OnInit {
@@ -26,31 +18,19 @@ export class ListeComponent implements OnInit {
   sortField: string = "";
 
   gameDialog: boolean = false;
+
   game: Game = {};
   formData: FormData = new FormData();
 
-  listStatus: string[] = [];
-  listPlateformes: string[] = [];
-  listSupports: string[] = [];
-
-  constructor(private restApi: RestApiService, private messageService: MessageService, private confirmationService: ConfirmationService, private cdr: ChangeDetectorRef) { }
+  constructor(private restApi: RestApiService, private messageService: MessageService, private confirmationService: ConfirmationService) { }
 
   ngOnInit() {
     this.restApi.getGames().subscribe((data: {}) => this.games = data);
-
-
-    this.restApi.getList('status').subscribe((data: string[]) => this.listStatus = data);
-    this.restApi.getList('plateformes').subscribe((data: string[]) => this.listPlateformes = data);
-    this.restApi.getList('supports').subscribe((data: string[]) => this.listSupports = data);
 
     this.sortOptions = [
       // { label: 'Price High to Low', value: '!price' },
       // { label: 'Price Low to High', value: 'price' }
     ];
-  }
-
-  onBasicUpload(event: any) {
-    this.game.miniature = event.files[0];
   }
 
   onSortChange(event: any) {
@@ -71,12 +51,8 @@ export class ListeComponent implements OnInit {
     this.gameDialog = true;
   }
 
-  hideDialog() {
-    this.gameDialog = false;
-  }
-
   editGame(game: Game) {
-    this.game = {...game};
+    this.game = { ...game };
     this.gameDialog = true;
   }
 
@@ -133,12 +109,8 @@ export class ListeComponent implements OnInit {
     });
   }
 
-  getMiniature(game: any) {
-    if('miniature' in game)
-      return 'http://localhost:3000' + game.miniature;
-    return 'assets/nopicture.png';
+  showDialog(show: boolean) {
+    this.gameDialog = show;
   }
-
-
 }
 

@@ -1,0 +1,93 @@
+.container {
+  display: flex;
+  .game-favoris {
+    position: relative;
+    height: 7rem;
+    margin-right: 2rem;
+    i {
+      position: absolute;
+      top: 0;
+      font-size: 2rem;
+      top: -1.35rem;
+      right: -1.35rem;
+      margin: 0.4rem;
+      color: rgb(247, 211, 8);
+      filter: drop-shadow(0 0 0.75rem black);
+      transform: rotate(10deg);
+    }
+    img {
+      width: 4.8rem;
+      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+      object-fit: cover;
+      height: 100%;
+    }
+  }
+
+  .game-list-detail {
+    flex: 1 1 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    align-self: baseline;
+    .game-name {
+      display: flex;
+      gap: 0.5rem;
+      font-size: 1.5rem;
+      font-weight: 700;
+      .game-name-badge {
+        display: flex;
+        align-self: center;
+        .p-badge {
+          width: max-content;
+        }
+      }
+    }
+    .game-plateforme {
+      display: flex;
+      gap: 0.5rem;
+    }
+    .game-score {
+      font-weight: 600;
+      vertical-align: middle;
+    }
+  }
+
+  .game-list-action {
+    display: flex;
+    flex-direction: column;
+    .p-button {
+      margin-bottom: 0.5rem;
+    }
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .container {
+    flex-direction: column;
+    align-items: center;
+    .game-favoris {
+      height: 15rem;
+      margin: 0;
+      margin-bottom: 0.75rem;
+      img {
+        width: 10rem;
+      }
+    }
+    .game-list-detail {
+      text-align: center;
+      align-self: auto;
+      .game-name {
+        flex-direction: column;
+      }
+    }
+    .game-list-action {
+      display: flex;
+      flex-direction: column;
+      margin-top: 2rem;
+      flex-direction: row;
+      justify-content: space-evenly;
+      align-items: center;
+      width: 100%;
+    }
+  }
+}
