@@ -1,0 +1,15 @@
+<p-toolbar styleClass="menu-bar">
+  <div class="p-toolbar-group-left">
+    <img src="assets/icon.png" alt="icon">
+  </div>
+
+  <div class="p-toolbar-group-center">
+    <p-button label="Accueil" icon="pi pi-home" iconPos="left" [routerLink]="['/']"></p-button>
+    <p-button label="Liste" icon="pi pi-list" iconPos="left" [routerLink]="['/liste']"></p-button>
+    <p-button label="Statistiques" icon="pi pi-chart-bar" iconPos="left" [routerLink]="['/stats']"></p-button>
+  </div>
+
+  <div class="p-toolbar-group-right">
+    <p-button icon="pi pi-search"></p-button>
+  </div>
+</p-toolbar>

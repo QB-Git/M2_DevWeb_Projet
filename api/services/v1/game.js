@@ -10,9 +10,8 @@ exports.getAll = async (req, res, next) => {
 }
 
 exports.getById = async (req, res, next) => {
-  const { id } = req.params;
   try {
-    let game = await Game.findById(id);
+    let game = await Game.findById(req.params.id);
     return game ? res.status(200).json(game) : res.status(404).json('game_not_found');
   } catch (error) {
     return res.status(501).json(error);
@@ -21,6 +20,9 @@ exports.getById = async (req, res, next) => {
 
 exports.add = async (req, res, next) => {
   Object.keys(req.body).forEach((key) => (req.body[key] == null) && delete req.body[key]);
+  if(req?.file?.path)
+    req.body['miniature'] = '/'+req.file.path;
+  console.log(req.body);
   try {
     let game = await Game.create(req.body);
     return res.status(201).json(game);
@@ -31,7 +33,7 @@ exports.add = async (req, res, next) => {
 
 exports.update = async (req, res, next) => {
   try {
-    let game = await Game.findOne({ _id: req.body.id });
+    let game = await Game.findOne({ _id: req.params.id });
     if (game) {
       Object.keys(req.body)
         .filter(key => !!req.body[key])
@@ -46,9 +48,8 @@ exports.update = async (req, res, next) => {
 }
 
 exports.delete = async (req, res, next) => {
-  const { id } = req.body;
   try {
-    await Game.deleteOne({ _id: id });
+    await Game.deleteOne({ _id: req.params.id });
     return res.status(204).json('delete_ok');
   } catch (error) {
     return res.status(501).json(error);

@@ -1,0 +1,10 @@
+:host ::ng-deep .menu-bar {
+  padding: 0rem 1rem;
+  .p-toolbar-group-center, .p-toolbar-group-right {
+    padding: 1rem;
+  }
+}
+
+p-toolbar img {
+  height: 3.5rem;
+}

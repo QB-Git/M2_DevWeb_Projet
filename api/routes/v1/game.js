@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const { uploadFile } = require('../../services/upload-miniature')
 
 const service = require('../../services/v1/game');
 
@@ -7,10 +8,10 @@ router.get('/all', service.getAll);
 
 router.get('/:id', service.getById);
 
-router.put('/add', service.add);
+router.put('/add', uploadFile, service.add);
 
-router.patch('/update', service.update);
+router.patch('/update/:id', service.update);
 
-router.delete('/delete', service.delete);
+router.delete('/delete/:id', service.delete);
 
 module.exports = router;
