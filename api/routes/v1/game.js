@@ -10,7 +10,7 @@ router.get('/:id', service.getById);
 
 router.put('/add', uploadFile, service.add);
 
-router.patch('/update/:id', service.update);
+router.patch('/update/:id', uploadFile, service.update);
 
 router.delete('/delete/:id', service.delete);
 

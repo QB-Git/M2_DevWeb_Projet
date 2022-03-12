@@ -22,14 +22,3 @@ exports.uploadFile = multer({
     callback(new Error('Invalid file type. Only picture file on type PNG and JPG are allowed!'));
   },
 }).single('miniature');
-
-// handleSingleUploadFile = async (req, res) => {
-//   return new Promise((resolve, reject) => {
-//     uploadFile(req, res, (error) => {
-//       if (error) {
-//         reject(error);
-//       }
-//       resolve({ file: req.file, body: req.body });
-//     });
-//   });
-// };

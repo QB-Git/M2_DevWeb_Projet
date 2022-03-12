@@ -22,7 +22,6 @@ exports.add = async (req, res, next) => {
   Object.keys(req.body).forEach((key) => (req.body[key] == null) && delete req.body[key]);
   if(req?.file?.path)
     req.body['miniature'] = '/'+req.file.path;
-  console.log(req.body);
   try {
     let game = await Game.create(req.body);
     return res.status(201).json(game);
@@ -32,6 +31,8 @@ exports.add = async (req, res, next) => {
 }
 
 exports.update = async (req, res, next) => {
+  if(req?.file?.path)
+    req.body['miniature'] = '/'+req.file.path;
   try {
     let game = await Game.findOne({ _id: req.params.id });
     if (game) {

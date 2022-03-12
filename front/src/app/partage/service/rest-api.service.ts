@@ -20,6 +20,18 @@ export class RestApiService {
     });
   }
 
+  private jsonToFormData(game: Game): FormData {
+    let formData: FormData = new FormData();
+    if(game.nom) formData.append('nom', game.nom);
+    if(game.status) formData.append('status', game.status);
+    if(game.note) formData.append('note', ''+game.note);
+    if(game.plateforme) game.plateforme.forEach(p => formData.append('plateforme', p));
+    if(game.support) game.support.forEach(p => formData.append('support', p));
+    if(game.commentaire) formData.append('commentaire', game.commentaire);
+    if(game.miniature) formData.append('miniature', game.miniature)
+    return formData;
+  }
+
   /*========================================
     CRUD Methods for consuming RESTful API
   =========================================*/
@@ -61,25 +73,10 @@ export class RestApiService {
 
   // HttpClient API post() method => Create game
   createGame(game: any): Observable<Game> {
-    // console.log(game);
-    let formData: any = new FormData();
-    formData.append('nom', 'quentin');
-    formData.append('status', 'En cours');
-    formData.append('plateforme', 'PC');
-    formData.append('plateforme', 'Wii');
-    formData.append('support[]', 'Version physique');
-    formData.append('miniature', game.miniature)
-    // Object.keys(game).forEach(key => {
-    //   formData.append(key, game[key])
-    // })
-    console.log(formData);
-    for (var pair of formData.entries()) {
-      console.log(pair[0] + ', ' + pair[1]);
-    }
     return this.http
       .put<Game>(
         this.api.addGame,
-        formData,
+        this.jsonToFormData(game),
         // JSON.stringify(game),
         // this.httpOptions
       )
@@ -91,7 +88,7 @@ export class RestApiService {
     return this.http
       .patch<Game>(
         this.api.updateGame.replace(':id', id),
-        JSON.stringify(game),
+        this.jsonToFormData(game),
         this.httpOptions
       )
       .pipe(retry(1), catchError(this.handleError));

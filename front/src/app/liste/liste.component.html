@@ -1,7 +1,3 @@
-<!-- <div class="container">
-  <app-carte *ngFor="let game of games" [game]="game"></app-carte>
-</div> -->
-<!-- <img *ngFor="let game of games" [src]="'http://localhost:3000'+game.miniature" alt=""> -->
 <p-toast></p-toast>
 
 <p-dataView #dv [value]="games" [paginator]="true" [rows]="9" filterBy="nom" [sortField]="sortField"
@@ -50,34 +46,36 @@
     </div>
   </ng-template>
   <ng-template let-game pTemplate="gridItem">
-    <!-- <div class="col-12 md:col-4">
-              <div class="game-grid-item card">
-                  <div class="game-grid-item-top">
-                      <div>
-                          <i class="pi pi-tag game-category-icon"></i>
-                          <span class="game-category">{{game.category}}</span>
-                      </div>
-                      <span [class]="'game-badge status-' + game.inventoryStatus.toLowerCase()">{{game.inventoryStatus}}</span>
-                  </div>
-                  <div class="game-grid-item-content">
-                      <img [src]="'assets/showcase/images/demo/game/' + game.image" [alt]="game.name"/>
-                      <div class="game-name">{{game.name}}</div>
-                      <div class="game-description">{{game.description}}</div>
-                      <p-rating [ngModel]="game.rating" [readonly]="true" [cancel]="false"></p-rating>
-                  </div>
-                  <div class="game-grid-item-bottom">
-                      <span class="game-price">${{game.price}}</span>
-                      <p-button icon="pi pi-shopping-cart" [disabled]="game.inventoryStatus === 'OUTOFSTOCK'"></p-button>
-                  </div>
-              </div>
-          </div> -->
+    <div class="col-12 md:col-4">
+      <div class="game-grid-item card">
+        <div class="game-grid-item-top">
+          <span class="game-score">{{game.note ? game.note+" / 10" : "Non noté"}}</span>
+          <i [class]="(game.favoris ? 'pi pi-star-fill' : '')+' iconFavoris'"></i>
+          <p-badge class="game-name-badge" [value]="game.status"></p-badge>
+        </div>
+        <div class="game-grid-item-content">
+          <img [src]="getMiniature(game)" [alt]="game.miniature" />
+          <div class="game-name">{{game.nom}}</div>
+          <div class="game-plateforme">
+            <p-chip *ngFor="let plateforme of game.plateforme" [label]="plateforme" icon="pi pi-desktop"></p-chip>
+            <p-chip *ngFor="let support of game.support" [label]="support" icon="fa fa-compact-disc"></p-chip>
+          </div>
+        </div>
+        <div class="game-grid-item-bottom">
+          <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded" label="Modifier"
+            (click)="editGame(game)"></button>
+          <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger" label="Supprimer"
+            (click)="deleteGame(game)"></button>
+        </div>
+      </div>
+    </div>
   </ng-template>
 </p-dataView>
 
-<p-dialog [(visible)]="gameDialog" [style]="{width: '75%'}" header="Ajout d'un jeu" [modal]="true"
-  styleClass="p-fluid">
+<p-dialog [(visible)]="gameDialog" [style]="{width: '75%'}" header="Ajout d'un jeu" [modal]="true" styleClass="p-fluid">
   <ng-template pTemplate="content">
-    <p-fileUpload mode="basic" accept="image/*" [maxFileSize]="2000000" (onSelect)="onBasicUpload($event)" [customUpload]="true"></p-fileUpload>
+    <p-fileUpload mode="basic" accept="image/*" [maxFileSize]="2000000" (onSelect)="onBasicUpload($event)"
+      [customUpload]="true"></p-fileUpload>
     <div class="p-field">
       <label for="name">Name</label>
       <input type="text" pInputText id="name" [(ngModel)]="game.nom" required autofocus placeholder="Choisir un nom" />

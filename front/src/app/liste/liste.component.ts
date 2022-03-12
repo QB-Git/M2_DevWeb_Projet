@@ -88,7 +88,9 @@ export class ListeComponent implements OnInit {
         const id = this.findIndexById(this.game._id);
         this.restApi.updateGame(this.game._id, this.game).subscribe((data: {}) => {
           this.games[id] = data;
-          this.cdr.markForCheck();
+          this.games = [...this.games];
+          this.gameDialog = false;
+          this.game = {};
           this.messageService.add({ severity: 'success', summary: 'Opération réussie', detail: 'Jeu mis à jour', life: 3000 });
         });
       }
@@ -103,9 +105,6 @@ export class ListeComponent implements OnInit {
         //   this.messageService.add({ severity: 'success', summary: 'Opération réussie', detail: 'Jeu ajouté', life: 3000 });
         // });
       }
-      this.games = [...this.games];
-      this.gameDialog = false;
-      this.game = {};
     }
   }
 
