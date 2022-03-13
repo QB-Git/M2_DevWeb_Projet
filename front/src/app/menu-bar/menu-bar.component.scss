@@ -1,10 +1,17 @@
 :host ::ng-deep .menu-bar {
   padding: 0rem 1rem;
-  .p-toolbar-group-center, .p-toolbar-group-right {
+  .p-toolbar-group-center,
+  .p-toolbar-group-right {
     padding: 1rem;
   }
 }
 
 p-toolbar img {
   height: 3.5rem;
+}
+
+.title {
+  font-size: 2rem;
+  color: var(--text-color);
+  margin-left: 1rem;
 }

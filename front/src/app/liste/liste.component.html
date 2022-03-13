@@ -6,7 +6,7 @@
 
 
 <p-dataView #dv [value]="games" [paginator]="true" [rows]="9" filterBy="nom" [sortField]="sortField"
-  [sortOrder]="sortOrder" layout="grid" [style]="{width: '100%'}">
+  [sortOrder]="sortOrder" layout="grid" [style]="{width: '100%'}" [emptyMessage]="'Aucun jeu trouvé'">
   <ng-template pTemplate="header">
     <div class="flex flex-column md:flex-row md:justify-content-between">
       <span>
@@ -23,21 +23,17 @@
     </div>
   </ng-template>
   <ng-template let-game pTemplate="listItem">
-    <div class="col-12">
-      <div class="game-list-item">
-        <app-line [game]="game" (gameDelete)="deleteGame($event)" (gameUpdate)="saveGame()"
-          (editGame)="editGame($event)" (deleteGame)="deleteGame($event)" [style]="{width: '100%'}"></app-line>
-      </div>
-    </div>
+    <app-line [game]="game" (gameDelete)="deleteGame($event)" (gameUpdate)="saveGame($event)"
+      (editGame)="editGame($event)" (deleteGame)="deleteGame($event)" (seeGame)="seeGame($event)"
+      [style]="{width: '100%'}"></app-line>
   </ng-template>
   <ng-template let-game pTemplate="gridItem">
-    <div class="col-12 md:col-4">
-      <div class="game-grid-item card">
-          <app-carte [game]="game" (gameDelete)="deleteGame($event)" (gameUpdate)="saveGame()"
-          (editGame)="editGame($event)" (deleteGame)="deleteGame($event)" [style]="{width: '100%'}"></app-carte>
-      </div>
-    </div>
+    <app-carte [game]="game" (gameDelete)="deleteGame($event)" (gameUpdate)="saveGame($event)"
+      (editGame)="editGame($event)" (deleteGame)="deleteGame($event)" (seeGame)="seeGame($event)"></app-carte>
   </ng-template>
 </p-dataView>
 
-<app-dialog-game #dialog [game]="game" [open]="gameDialog" (show)="showDialog($event)" (save)="saveGame()"></app-dialog-game>
+<app-dialog-game #dialog [game]="game" (save)="saveGame($event)" class="dialogEditandNew">
+</app-dialog-game>
+
+<app-dialog-game-readonly #dialogRO [game]="game"></app-dialog-game-readonly>

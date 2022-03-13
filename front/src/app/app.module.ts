@@ -34,9 +34,12 @@ import { InputNumberModule } from 'primeng/inputnumber';
 import { ToggleButtonModule } from 'primeng/togglebutton';
 import { MultiSelectModule } from 'primeng/multiselect';
 import { ReactiveFormsModule } from '@angular/forms';
-import {ImageModule} from 'primeng/image';
+import { ImageModule } from 'primeng/image';
 import { LineComponent } from './partage/line/line.component';
 import { DialogGameComponent } from './partage/dialog-game/dialog-game.component';
+import { ChartModule } from 'primeng/chart';
+import { SelectButtonModule } from 'primeng/selectbutton';
+import { DialogGameReadonlyComponent } from './partage/dialog-game-readonly/dialog-game-readonly.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +50,8 @@ import { DialogGameComponent } from './partage/dialog-game/dialog-game.component
     AccueilComponent,
     CarteComponent,
     LineComponent,
-    DialogGameComponent
+    DialogGameComponent,
+    DialogGameReadonlyComponent
   ],
   imports: [
     BrowserModule,
@@ -77,7 +81,9 @@ import { DialogGameComponent } from './partage/dialog-game/dialog-game.component
     ToggleButtonModule,
     MultiSelectModule,
     ReactiveFormsModule,
-    ImageModule
+    ImageModule,
+    ChartModule,
+    SelectButtonModule
   ],
   providers: [
     MessageService,

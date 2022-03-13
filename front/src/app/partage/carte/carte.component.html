@@ -1,4 +1,4 @@
-<div class="container">
+<div class="game-grid-item container">
   <div class="game-grid-item-top">
     <span class="game-score">{{game.note ? game.note+" / 10" : "Non noté"}}</span>
     <i [class]="(game.favoris ? 'pi pi-star-fill' : '')+' iconFavoris'"></i>
@@ -13,6 +13,8 @@
     </div>
   </div>
   <div class="game-grid-item-bottom">
+    <button pButton pRipple icon="pi pi-eye" class="p-button-rounded p-button-success" label="Voir"
+      (click)="btnSeeGame()"></button>
     <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded" label="Modifier"
       (click)="btnUpdateGame()"></button>
     <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger" label="Supprimer"

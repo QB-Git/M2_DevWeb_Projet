@@ -1,5 +1,5 @@
 import { RestApiService } from './../partage/service/rest-api.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Game } from '../partage/Game';
 import { SelectItem, ConfirmationService, MessageService } from 'primeng/api';
 
@@ -9,6 +9,9 @@ import { SelectItem, ConfirmationService, MessageService } from 'primeng/api';
   styleUrls: ['./liste.component.scss']
 })
 export class ListeComponent implements OnInit {
+  @ViewChild('dialogRO') dialogRO: any;
+  @ViewChild('dialog') dialog: any;
+
   games: any = [];
 
   sortOptions: SelectItem[] = [];
@@ -16,8 +19,6 @@ export class ListeComponent implements OnInit {
   sortOrder: number = 0;
 
   sortField: string = "";
-
-  gameDialog: boolean = false;
 
   game: Game = {};
   formData: FormData = new FormData();
@@ -48,35 +49,43 @@ export class ListeComponent implements OnInit {
 
   newGame() {
     this.game = {};
-    this.gameDialog = true;
+    this.dialog.label = 'Ajout d\'un jeu';
+    this.dialog.open = true;
   }
 
   editGame(game: Game) {
     this.game = { ...game };
-    this.gameDialog = true;
+    this.dialog.label = 'Modification d\'un jeu';
+    this.dialog.open = true;
   }
 
-  saveGame() {
-    console.log(this.game);
+  seeGame(game: Game) {
+    this.game = { ...game };
+    this.dialogRO.open = true;
+  }
+
+  private afterSaveGame(message: string) {
+    this.games = [...this.games];
+    this.dialog.open = false;
+    this.game = {};
+    this.messageService.add({ severity: 'success', summary: 'Opération réussie', detail: message, life: 3000 })
+  }
+
+  saveGame(game: any) {
     if (this.game.nom?.trim()) {
       if (this.game._id) {
         // UPDATE
         const id = this.findIndexById(this.game._id);
-        this.restApi.updateGame(this.game._id, this.game).subscribe((data: {}) => {
+        this.restApi.updateGame(game._id, game).subscribe((data: {}) => {
           this.games[id] = data;
-          this.games = [...this.games];
-          this.gameDialog = false;
-          this.game = {};
-          this.messageService.add({ severity: 'success', summary: 'Opération réussie', detail: 'Jeu mis à jour', life: 3000 });
+          this.afterSaveGame('Jeu mis à jour');
         });
       }
       else {
         // CREATE
-        this.restApi.createGame(this.game).subscribe((data: {}) => {
+        this.restApi.createGame(game).subscribe((data: {}) => {
           this.games.push(data);
-          this.gameDialog = false;
-          this.game = {};
-          this.messageService.add({ severity: 'success', summary: 'Opération réussie', detail: 'Jeu ajouté', life: 3000 });
+          this.afterSaveGame('Jeu ajouté');
         });
       }
     }
@@ -107,10 +116,6 @@ export class ListeComponent implements OnInit {
         });
       }
     });
-  }
-
-  showDialog(show: boolean) {
-    this.gameDialog = show;
   }
 }
 

@@ -1,43 +1,16 @@
-.game-list-item {
-  display: flex;
-  align-items: center;
-  padding: 1rem;
-  width: 100%;
-}
-
-.game-grid-item {
-  margin: 0.5em;
-  border: 1px solid #dee2e6;
-  padding: 1.5rem;
-}
-
-.card {
-  padding: 2rem;
-  box-shadow: 0 2px 1px -1px rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14),
-    0 1px 3px 0 rgba(0, 0, 0, 0.12);
-  border-radius: 4px;
-  margin-bottom: 2rem;
-}
-
 :host ::ng-deep .p-dataview-content {
   .grid {
     justify-content: space-evenly;
   }
 }
 
-@media screen and (max-width: 576px) {
-  :host ::ng-deep .game-list-item {
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-  }
-
-  :host ::ng-deep .p-dialog {
+@media screen and (max-width: 900px) {
+  :host ::ng-deep .dialogEditandNew .p-dialog {
     width: 95% !important;
   }
 }
 
-:host ::ng-deep .p-dialog-content {
+:host ::ng-deep .dialogEditandNew .p-dialog-content {
   gap: 1rem;
   display: flex;
   flex-direction: column;

@@ -1,6 +1,24 @@
-<p-dialog [(visible)]="open" [style]="{width: '75%'}" [header]="label" [modal]="true" styleClass="p-fluid">
+<p-dialog [(visible)]="open" [style]="{maxWidth: '75%'}" header="Détails d'un jeu" [modal]="true" styleClass="p-fluid">
   <ng-template pTemplate="content">
-    <div>
+
+    <div class="content-header">
+      <div class="container">
+        <p-image [src]="formatGame.getMiniature(game)" alt="Image" width="250" [preview]="true"></p-image>
+        <div class="infos">
+          <p-badge [value]="game.status || 'Pas de status'"></p-badge>
+          <div class="nom">{{game.nom}}</div>
+          <span>{{game.note ? game.note+" / 10" : "Non noté"}}</span>
+          <div class="chips">
+            <p-chip *ngFor="let plateforme of game.plateforme" [label]="plateforme" icon="pi pi-desktop"></p-chip>
+            <p-chip *ngFor="let support of game.support" [label]="support" icon="fa fa-compact-disc"></p-chip>
+          </div>
+          <textarea *ngIf="game.commentaire" rows="5" cols="30" pInputTextarea [autoResize]="true"[disabled]="true">{{game.commentaire}}</textarea>
+          <div>{{game.favoris}}</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- <div>
       <div class="container-header">
         <div class="miniature">
           <p-image [src]="tempMiniature ? tempMiniature.objectURL : formatGame.getMiniature(game)" alt="miniature" width="250" [preview]="true">
@@ -55,12 +73,10 @@
     <div class="p-field">
       <label for="description">Commentaire</label>
       <textarea id="description" pInputTextarea [(ngModel)]="game!.commentaire" required rows="6" cols="20"></textarea>
-    </div>
+    </div> -->
   </ng-template>
 
   <ng-template pTemplate="footer">
-    <button pButton pRipple label="Annuler" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
-    <button pButton pRipple label="Enregistrer" icon="pi pi-check" class="p-button-text" (click)="saveGame()"
-      [disabled]="!(game.nom && game.status && game.plateforme && game.plateforme.length > 0 && game.support && game.support.length > 0)"></button>
+    <button pButton pRipple label="Ok" icon="pi pi-check" class="p-button-text" (click)="open = false"></button>
   </ng-template>
 </p-dialog>

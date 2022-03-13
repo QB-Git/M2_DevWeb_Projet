@@ -1,6 +1,7 @@
 <p-toolbar styleClass="menu-bar">
   <div class="p-toolbar-group-left">
     <img src="assets/icon.png" alt="icon">
+    <div class="title">MyGameList</div>
   </div>
 
   <div class="p-toolbar-group-center">
@@ -10,6 +11,10 @@
   </div>
 
   <div class="p-toolbar-group-right">
-    <p-button icon="pi pi-search"></p-button>
+    <p-selectButton [options]="modeOptions" [(ngModel)]="mode" optionLabel="icon" optionValue="mode">
+      <ng-template let-item>
+        <i [class]="item.icon"></i>
+      </ng-template>
+    </p-selectButton>
   </div>
 </p-toolbar>

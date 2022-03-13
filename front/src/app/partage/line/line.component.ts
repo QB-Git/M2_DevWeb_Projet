@@ -15,6 +15,7 @@ export class LineComponent implements OnInit {
   @Output('gameUpdate') update$: EventEmitter<any> = new EventEmitter();
   @Output('deleteGame') deleteGame$: EventEmitter<any> = new EventEmitter();
   @Output('editGame') editGame$: EventEmitter<any> = new EventEmitter();
+  @Output('seeGame') seeGame$: EventEmitter<any> = new EventEmitter();
 
   constructor(public formatGame: FormatGameService, ) {
     this.game = {};
@@ -37,5 +38,9 @@ export class LineComponent implements OnInit {
 
   btnUpdateGame() {
     this.editGame$.emit(this.game);
+  }
+
+  btnSeeGame() {
+    this.seeGame$.emit(this.game);
   }
 }

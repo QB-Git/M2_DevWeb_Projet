@@ -1,5 +1,8 @@
 .container {
   display: flex;
+  align-items: center;
+  padding: 1rem;
+  width: 100%;
   .game-favoris {
     position: relative;
     height: 7rem;
@@ -20,6 +23,7 @@
       box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
       object-fit: cover;
       height: 100%;
+      border-radius: 0.5rem;
     }
   }
 
@@ -37,14 +41,12 @@
       .game-name-badge {
         display: flex;
         align-self: center;
-        .p-badge {
-          width: max-content;
-        }
       }
     }
     .game-plateforme {
       display: flex;
       gap: 0.5rem;
+      flex-wrap: wrap;
     }
     .game-score {
       font-weight: 600;
@@ -54,17 +56,26 @@
 
   .game-list-action {
     display: flex;
-    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
     .p-button {
       margin-bottom: 0.5rem;
     }
   }
 }
 
-@media screen and (max-width: 576px) {
+:host ::ng-deep .game-list-detail .game-name .game-name-badge .p-badge {
+  width: max-content;
+}
+
+@media screen and (max-width: 676px) {
   .container {
     flex-direction: column;
     align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    border-bottom: 1px solid var(--surface-border);
     .game-favoris {
       height: 15rem;
       margin: 0;
@@ -78,6 +89,9 @@
       align-self: auto;
       .game-name {
         flex-direction: column;
+      }
+      .game-plateforme {
+        justify-content: center;
       }
     }
     .game-list-action {
