@@ -69,6 +69,7 @@ export class DialogGameComponent implements OnInit {
   // On assigne définitivement la miniature et on enregstre le jeu
   saveGame() {
     this.game.miniature = this.tempMiniature;
+    this.tempMiniature = undefined;
     this.saveGame$.emit(this.game);
   }
 
