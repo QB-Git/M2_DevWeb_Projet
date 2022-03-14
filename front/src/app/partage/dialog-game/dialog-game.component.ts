@@ -21,7 +21,7 @@ export class DialogGameComponent implements OnInit {
   @ViewChild('upFile') upFile: any;
 
   // Paramètres variables, changés depuis le parent grâce à un ViewChild
-  label: string = '';
+  label: string;
   open: boolean = false;
 
   // Les liste de status, plateformes et supports
@@ -33,19 +33,20 @@ export class DialogGameComponent implements OnInit {
   tempMiniature: any | undefined;
 
   constructor(private restApi: RestApiService, public formatGame: FormatGameService) {
+    // On initialise les variables
     this.game = {};
+    this.label = '';
     // On récupère les trois listes
     this.restApi.getList('status').subscribe((data: string[]) => this.listStatus = data);
     this.restApi.getList('plateformes').subscribe((data: string[]) => {
-      data.forEach(p => this.listPlateformes.push({ name: p }))
+      data.forEach(p => this.listPlateformes.push({name: p}))
     });
     this.restApi.getList('supports').subscribe((data: string[]) => {
-      data.forEach(p => this.listSupports.push({ name: p }))
+      data.forEach(p => this.listSupports.push({name: p}))
     });
   }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   // Permet de sauvegarder le fichier uploadé
   uploadMiniature(event: any) {
@@ -69,5 +70,10 @@ export class DialogGameComponent implements OnInit {
   saveGame() {
     this.game.miniature = this.tempMiniature;
     this.saveGame$.emit(this.game);
+  }
+
+  // Permet de gérer l'appui sur la touche
+  @HostListener('document:keydown.escape', ['$event']) onKeydownHandler(event: KeyboardEvent) {
+    this.hideDialog();
   }
 }
