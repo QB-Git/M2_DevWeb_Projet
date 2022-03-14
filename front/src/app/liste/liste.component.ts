@@ -16,21 +16,23 @@ export class ListeComponent implements OnInit {
 
   sortOptions: SelectItem[] = [];
 
-  sortOrder: number = 0;
+  sortOrder: number = 1;
 
-  sortField: string = "";
+  sortField: string = "nom";
+
+  sortKey!: string;
 
   game: Game = {};
   formData: FormData = new FormData();
 
-  constructor(private restApi: RestApiService, private messageService: MessageService, private confirmationService: ConfirmationService) { }
+  constructor(private restApi: RestApiService, private messageService: MessageService, private confirmationService: ConfirmationService) {}
 
   ngOnInit() {
     this.restApi.getGames().subscribe((data: {}) => this.games = data);
 
     this.sortOptions = [
-      // { label: 'Price High to Low', value: '!price' },
-      // { label: 'Price Low to High', value: 'price' }
+      { label: 'A à Z (ordre alphabétique)', value: 'nom' },
+      { label: 'Z à A (ordre anti-alphabétique) ', value: '!nom' }
     ];
   }
 

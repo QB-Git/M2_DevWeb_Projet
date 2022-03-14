@@ -2,19 +2,20 @@ export const environment = {
   production: true,
   backend: {
     protocol: 'http',
-    host: '127.0.0.1',
+    host: 'localhost',
     port: '3000',
+    apiVersion: 'api/v1',
     endpoints: {
       // GAME
-      addGame: '/api/v1/game/add', // PUT
-      getAllGames: '/api/v1/game/all', // GET
-      getGameById: '/api/v1/game/:id', // GET
-      updateGame: '/api/v1/game/update', // PATCH
-      deleteGame: '/api/v1/game/delete', // DELETE
+      addGame: '/game/add', // PUT
+      getGames: '/game/all', // GET
+      getGameById: '/game/:id', // GET
+      updateGame: '/game/update/:id', // PATCH
+      deleteGame: '/game/delete/:id', // DELETE
       // LIST
-      getList: 'api/v1/list/:list', // GET
+      getList: '/list/:list', // GET
       // TEST
-      test: '/api/v1', // GET
+      test: '/', // GET
     }
   }
 };

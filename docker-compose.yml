@@ -34,7 +34,7 @@ services:
       - mongo
     environment:
       - URL_MONGO=mongodb://${MONGO_USERNAME}:${MONGO_PASSWORD}@mongo:${MONGO_PORT}/
-    command: bash -c "cd /var/www && ./node_modules/.bin/pm2 start startup.json --name API --no-daemon"
+    command: bash -c "cd /var/www && ./node_modules/.bin/pm2 start startup.json --name API --no-daemon && node seed.js"
     depends_on:
       - mongo
 

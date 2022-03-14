@@ -4,6 +4,10 @@
   .p-toolbar-group-right {
     padding: 1rem;
   }
+  .p-toolbar-group-center {
+    display: flex;
+    gap: 1rem;
+  }
 }
 
 p-toolbar img {
@@ -15,3 +19,4 @@ p-toolbar img {
   color: var(--text-color);
   margin-left: 1rem;
 }
+

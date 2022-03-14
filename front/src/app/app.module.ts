@@ -40,6 +40,7 @@ import { DialogGameComponent } from './partage/dialog-game/dialog-game.component
 import { ChartModule } from 'primeng/chart';
 import { SelectButtonModule } from 'primeng/selectbutton';
 import { DialogGameReadonlyComponent } from './partage/dialog-game-readonly/dialog-game-readonly.component';
+import {ScrollPanelModule} from 'primeng/scrollpanel';
 
 @NgModule({
   declarations: [
@@ -83,7 +84,8 @@ import { DialogGameReadonlyComponent } from './partage/dialog-game-readonly/dial
     ReactiveFormsModule,
     ImageModule,
     ChartModule,
-    SelectButtonModule
+    SelectButtonModule,
+    ScrollPanelModule
   ],
   providers: [
     MessageService,

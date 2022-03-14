@@ -17,8 +17,8 @@
           <input type="search" pInputText placeholder="Chercher par nom" (input)="dv.filter($any($event.target).value)">
         </span>
       </span>
-      <!-- <p-dropdown [options]="sortOptions" placeholder="Sort By Price" (onChange)="onSortChange($event)"
-        styleClass="mb-2 md:mb-0"></p-dropdown> -->
+      <p-dropdown [options]="sortOptions" [(ngModel)]="sortKey" placeholder="Trier de ..."
+        (onChange)="onSortChange($event)" styleClass="mb-2 md:mb-0"></p-dropdown>
       <p-dataViewLayoutOptions></p-dataViewLayoutOptions>
     </div>
   </ng-template>

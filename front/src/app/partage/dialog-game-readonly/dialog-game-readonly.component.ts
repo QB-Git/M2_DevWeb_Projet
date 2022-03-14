@@ -17,4 +17,10 @@ export class DialogGameReadonlyComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
+  formatGameCommentaire = () => {
+    if(this.game.commentaire)
+      return this.game.commentaire.replace(/\n/g, "<br />");
+    return undefined;
+  }
 }

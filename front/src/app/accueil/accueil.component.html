@@ -1,1 +1,16 @@
-<p>accueil works!</p>
+<div class="grid grid-nogutter surface-section text-800">
+  <div class="col-12 md:col-6 p-6 text-center md:text-left flex align-items-center ">
+    <section>
+      <span class="block text-6xl font-bold mb-1">Sauvegarder vos expérience</span>
+      <div class="text-6xl text-primary font-bold mb-3">vidéoludiques avec MyGameList</div>
+      <p class="mt-0 mb-4 text-700 line-height-3">Un outil merveilleux qui vous permettra à tout instant de retrouver à quels jeux vous avez joué il y a longtemps ! Avec MyGameList c'est l'assurance de ne plus rien oublier sur vos jeux !</p>
+
+      <button pButton pRipple label="Accéder à la liste" type="button" class="mr-3 p-button-raised" [routerLink]="['/liste']"></button>
+      <button pButton pRipple label="Accéder aux statistiques" type="button" class="p-button-outlined" [routerLink]="['/stats']"></button>
+    </section>
+  </div>
+  <div class="col-12 md:col-6 overflow-hidden image">
+    <img src="https://wallpaperaccess.com/full/6091442.jpg" alt="Image" class="md:ml-auto block md:h-full"
+      style="clip-path: polygon(8% 0, 100% 0%, 100% 100%, 0 100%)">
+  </div>
+</div>
