@@ -11,6 +11,7 @@ export class MenuBarComponent implements OnInit {
   mode: boolean = false;
 
   constructor() {
+    // Options pour le switch de thème
     this.modeOptions = [
       {icon: 'pi pi-sun', mode: false},
       {icon: 'pi pi-moon', mode: true}

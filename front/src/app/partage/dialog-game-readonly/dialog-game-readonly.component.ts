@@ -18,6 +18,7 @@ export class DialogGameReadonlyComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  // On gère le cas où le commentaire contient des retours à la ligne
   formatGameCommentaire = () => {
     if(this.game.commentaire)
       return this.game.commentaire.replace(/\n/g, "<br />");

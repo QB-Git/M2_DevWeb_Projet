@@ -9,10 +9,14 @@ import { environment as env } from 'src/environments/environment';
   providedIn: 'root',
 })
 export class RestApiService {
+  /**
+   * Service permettant de faire les appels à l'api REST
+   */
   // Define API
   private api: any = {};
 
   constructor(private http: HttpClient) {
+    // On rajoute l'url à l'ensemble des endpoints
     const baseURL = `${env.backend.protocol}://${env.backend.host}:${env.backend.port}/${env.backend.apiVersion}`;
     Object.keys(env.backend.endpoints).forEach((key: string) => {
       // @ts-ignore
@@ -20,6 +24,7 @@ export class RestApiService {
     });
   }
 
+  // Fonction permettant de transformer un json en FormData
   private jsonToFormData(game: Game): FormData {
     let formData: FormData = new FormData();
     if(game.nom) formData.append('nom', game.nom);

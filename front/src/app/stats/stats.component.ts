@@ -10,6 +10,7 @@ export class StatsComponent implements OnInit {
 
   data: any;
 
+  // Les options du graphique (taille de la légende)
   chartOptions: any = {
     plugins: {
       legend: {
@@ -18,16 +19,6 @@ export class StatsComponent implements OnInit {
               size: 17
           }
         }
-      },
-      datalabels: {
-        align: 'end',
-        anchor: 'end',
-        borderRadius: 4,
-        backgroundColor: 'teal',
-        color: 'white',
-        font: {
-          weight: 'bold',
-        },
       }
     },
   };
@@ -39,13 +30,11 @@ export class StatsComponent implements OnInit {
       const labels = data;
       const resa: number[] = Array(labels.length).fill(0);
       this.restApi.getGames().subscribe((games: {}) => {
-        console.log(Object.values(games));
-        // debugger;
+        // On récupère l'ensemble des infos
+        // et on construit notre graphique
         Object.values(games).forEach((e: any) => {
-          console.log(e);
           if (e['status'])
             resa[labels.indexOf(e.status)] += 1;
-          console.log(resa);
         });
         this.data = {
           labels: labels,

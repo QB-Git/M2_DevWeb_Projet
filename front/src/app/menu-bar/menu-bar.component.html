@@ -4,12 +4,14 @@
     <div class="title">MyGameList</div>
   </div>
 
+  <!-- Boutons permettant d'accéder aux différentes sections du site -->
   <div class="p-toolbar-group-center">
     <button pButton pRipple type="button" label="Accueil" icon="pi pi-home" iconPos="left" [routerLink]="['/']" class="p-button-primary p-button-text" styleClass="p-button-lg"></button>
     <button pButton pRipple type="button" label="Liste" icon="pi pi-list" iconPos="left" [routerLink]="['/liste']" class="p-button-primary p-button-text" styleClass="p-button-lg"></button>
     <button pButton pRipple type="button" label="Statistiques" icon="pi pi-chart-bar" iconPos="left" [routerLink]="['/stats']" class="p-button-primary p-button-text" styleClass="p-button-lg"></button>
   </div>
 
+  <!-- Switch thème (TODO) -->
   <div class="p-toolbar-group-right">
     <!-- <p-selectButton [options]="modeOptions" [(ngModel)]="mode" optionLabel="icon" optionValue="mode">
       <ng-template let-item>

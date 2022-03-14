@@ -5,11 +5,13 @@
         <div class="miniature">
           <p-image [src]="tempMiniature ? tempMiniature.objectURL : formatGame.getMiniature(game)" alt="miniature" width="250" [preview]="true">
           </p-image>
+          <!-- Input permettant l'upload de l'image -->
           <p-fileUpload #upFile mode="advanced" accept="image/*" [maxFileSize]="2000000"
             (onSelect)="uploadMiniature($event)" (onClear)="removeMiniature($event)" [customUpload]="true"
             chooseLabel="&nbsp;" cancelLabel="&nbsp;" [showUploadButton]="false" [showCancelButton]="false"
             [styleClass]="'uploadZone modeDelete'"></p-fileUpload>
         </div>
+        <!-- Tous les champs sont liés directement à game et les champs required ont un message d'erreur -->
         <div class="content-header">
           <div class="p-field">
             <label for="name"><b>* </b>Nom</label>
@@ -60,6 +62,7 @@
 
   <ng-template pTemplate="footer">
     <button pButton pRipple label="Annuler" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
+    <!-- On vérifie que tous les champs requis sont bien saisis -->
     <button pButton pRipple label="Enregistrer" icon="pi pi-check" class="p-button-text" (click)="saveGame()"
       [disabled]="!(game.nom && game.status && game.plateforme && game.plateforme.length > 0 && game.support && game.support.length > 0)"></button>
   </ng-template>

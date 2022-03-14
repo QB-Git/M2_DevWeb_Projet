@@ -9,8 +9,15 @@ import { FormatGameService } from '../service/format-game.service';
 })
 export class LineComponent implements OnInit {
 
+  /**
+   * Composant carte (utilisé dans app-liste)
+   * Permet d'afficher les informations d'un jeu et d'opérer des actions dessus
+   */
+
+  // Le jeu passé en paramètre
   @Input() game: Game;
 
+  // L'ensemble des actions que l'on fait remonter au parent
   @Output('gameDelete') delete$: EventEmitter<any> = new EventEmitter();
   @Output('gameUpdate') update$: EventEmitter<any> = new EventEmitter();
   @Output('deleteGame') deleteGame$: EventEmitter<any> = new EventEmitter();
