@@ -2,10 +2,14 @@
 
 ## Le sujet
 
-L'objectif du site web que nous avons créé est de permettre d'enregistrer les différents jeux vidéos auquel on a pu joué (ou on l'on veut jouer à l'avenir).
+L'objectif du site web que nous avons créé est de permettre d'enregistrer les différents jeux vidéos auxquels on a pu joué (ou on l'on veut jouer à l'avenir).
 Il n'a pas pour but de fournir une liste exhaustive de tous les jeux vidéos existants, mais bien de stocker les informations concernant les jeux auxquels on a pu s'essayer et noter quelques informations à ce propos (nom, note, support, plateforme, commentaire, ...).
 
 ## Comment lancer l'appli
+
+Tout d'abord, il est nécessaire d'installer les packages nodejs :
+- `cd ./front && npm install`
+- `cd ../api && npm install`
 
 Mis à part le front, l'ensemble de l'application est dockerisé, il suffit de faire la commande `docker-compose -f .\docker-compose-nofront.yml up -d --build` et d'ensuite lancer le front `cd ./front && npm start`
 
@@ -23,7 +27,7 @@ Voici les différentes urls :
 ## L'API
 
 Parlons rapidement de l'API. Celle-ci a été développé en NodeJS.
-Un soint a été apporté à la réalisation de celui-ci (usage des Formdata notamment et upload de fichier).
+Un soin a été apporté à la réalisation de celui-ci (usage des Formdata notamment et upload de fichier).
 
 Un seeder est également disponible et crée quelques valeurs au démarrage de l'application.
 
